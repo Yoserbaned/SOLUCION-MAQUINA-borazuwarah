@@ -1,6 +1,6 @@
 # SOLUCION-MAQUINA-borazuwarah
 
-En esta maquina se usan tecnicas de fuerza bruta, y sentido "comun" de explotacion para escalar privilegios una vez estado dentro de ella.
+En esta maquina se usan tecnicas de fuerza bruta, curiosidad para encontrar el usuario, y  sentido "comun"  para escalar privilegios una vez estado dentro de ella.
 
 #1. RECONOCIMIENTO
 --------------
