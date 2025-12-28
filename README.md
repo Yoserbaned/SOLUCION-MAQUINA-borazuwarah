@@ -97,7 +97,8 @@ Nos conrectamos con el usuario y password que logramos obtener:
         The programs included with the Debian GNU/Linux system are free software;
         the exact distribution terms for each program are described in the
         individual files in /usr/share/doc/*/copyright
-
+#3. ESCALAR PRIVILEGIOS
+------------------------
 una vez que ya entramos probamos por sentido comun haber si la password del usuario root fue reutilizada, es deicr si es la misma que se uso para acceder a la maquina:
 
         Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
